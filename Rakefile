@@ -10,6 +10,7 @@ Jeweler::Tasks.new do |gem|
 
   gem.add_dependency("sinatra")
   gem.add_dependency("mongoid")
+  gem.add_dependency("mongo_ext")
 end
 
 Jeweler::GemcutterTasks.new

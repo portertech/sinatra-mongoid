@@ -1,24 +1,20 @@
 require 'sinatra/base'
 require 'mongoid'
-require 'mongo_ext'
 
 module Sinatra
   module MongoidExtension
-    module DatabaseConnection
-      connection = Mongo::Connection.new(mongo_host)
-      Mongoid.database = connection.db(mongo_db)
-      if mongo_user
-        Mongoid.database.authenticate(mongo_user, mongo_password)
-      end
-    end
-
     def self.registered(app)
       app.set :mongo_host,     ENV['MONGO_HOST'] || 'localhost'
-      app.set :mongo_db,       ENV['MONGO_DB']
+      app.set :mongo_db,       ENV['MONGO_DB']   || 'changeme'
       app.set :mongo_user,     ENV['MONGO_USER']
       app.set :mongo_password, ENV['MONGO_PASSWORD']
 
-      app.helpers MongoidExtension::DatabaseConnection
+      Mongoid.database = Mongo::Connection.new(app.mongo_host).
+                                           db(app.mongo_db)
+      if app.mongo_user
+        Mongoid.database.authenticate(app.mongo_user,
+                                      app.mongo_password)
+      end
     end
   end
 
