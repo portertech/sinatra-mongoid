@@ -6,21 +6,21 @@ A Mongoid extension for Sinatra.
 Usage
 -----
 
-Install the gem:
+Gemfile:
 
-    sudo gem install sinatra-mongoid
+    gem 'sinatra'
+    gem 'sinatra-mongoid', :require_as => 'sinatra/mongoid'
+
+Bundle:
+
+    gem bundle
 
 Create your Sinatra app:
 
-    require 'rubygems'
-    require 'sinatra'
-    require 'sinatra/mongoid'
+    require File.dirname(__FILE__) + '/vendor/gems/environment'
+    Bundler.require_env
 
-    set :mongo_db, 'job-board'
-
-    configure :production do
-      set :mongo_host, 'db.mongohq.com'
-    end
+    set :mongo_db, 'db-name'
 
 Configuration
 -------------
@@ -35,7 +35,7 @@ All Sinatra options you can set are:
 Their default values are:
 
     ENV['MONGO_HOST'] || 'localhost'
-    ENV['MONGO_DB']
+    ENV['MONGO_DB']   || 'changme'
     ENV['MONGO_USER']
     ENV['MONGO_PASSWORD']
 
