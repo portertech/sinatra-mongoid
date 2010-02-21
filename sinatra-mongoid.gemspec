@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Croak"]
-  s.date = %q{2010-01-14}
+  s.date = %q{2010-02-19}
   s.description = %q{Like a blind date for the nastiest Ruby Mongo ORM and web framework.}
   s.email = %q{dcroak@thoughtbot.com}
   s.extra_rdoc_files = [
