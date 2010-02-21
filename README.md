@@ -29,6 +29,7 @@ All Sinatra options you can set are:
 
     :mongo_host
     :mongo_db
+    :mongo_port
     :mongo_user
     :mongo_password
 
@@ -36,6 +37,7 @@ Their default values are:
 
     ENV['MONGO_HOST'] || 'localhost'
     ENV['MONGO_DB']   || 'changme'
+    ENV['MONGO_PORT'] || Mongo::Connection::DEFAULT_PORT
     ENV['MONGO_USER']
     ENV['MONGO_PASSWORD']
 
@@ -44,3 +46,8 @@ Resources
 
 * [Mongoid](http://mongoid.org)
 * [Sinatra](http://sinatrarb.com)
+
+Authors
+-------
+
+Dan Croak, Justin Reidy.
