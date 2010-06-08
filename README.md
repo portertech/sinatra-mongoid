@@ -35,11 +35,24 @@ All Sinatra options you can set are:
 
 Their default values are:
 
-    ENV['MONGO_HOST'] || 'localhost'
-    ENV['MONGO_DB']   || 'changme'
-    ENV['MONGO_PORT'] || Mongo::Connection::DEFAULT_PORT
-    ENV['MONGO_USER']
-    ENV['MONGO_PASSWORD']
+    ENV['MONGOID_HOST']		|| 'localhost'
+    ENV['MONGOID_DATABASE']	|| 'changme'
+    ENV['MONGOID_PORT']		|| Mongo::Connection::DEFAULT_PORT
+    ENV['MONGOID_USERNAME']
+    ENV['MONGOID_PASSWORD']
+
+Heroku & MongoHQ:
+
+require 'uri'
+
+if ENV['MONGOHQ_URL']
+  mongo_uri = URI.parse(ENV['MONGOHQ_URL'])
+  ENV['MONGOID_HOST'] = mongo_uri.host
+  ENV['MONGOID_PORT'] = mongo_uri.port.to_s
+  ENV['MONGOID_USERNAME'] = mongo_uri.user
+  ENV['MONGOID_PASSWORD'] = mongo_uri.password
+  ENV['MONGOID_DATABASE'] = mongo_uri.path.gsub("/", "")
+end
 
 Resources
 ---------
